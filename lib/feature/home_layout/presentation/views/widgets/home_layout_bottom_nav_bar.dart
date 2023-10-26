@@ -15,7 +15,7 @@ class HomeLayoutBottomNavBar extends StatelessWidget {
         return BottomNavigationBar(
             currentIndex: cubit.currentIndex,
             onTap: (index) {
-              cubit.changeIndex(index: index);
+              cubit.changeIndexNavBar(index: index);
             },
             selectedItemColor: Colors.deepPurple,
              unselectedItemColor: Colors.grey,

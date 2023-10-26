@@ -11,10 +11,11 @@ class ApiService {
     );
   }
 
+  static String routeBaseUrl = 'https://route-ecommerce.onrender.com/api/v1/';
   static String baseUrl = 'https://student.valuxapps.com/api/';
 
-  Future<Map<String, dynamic>> get({required String endPoints}) async {
-    Response response = await dio.get('$baseUrl$endPoints');
+  static Future<Map<String, dynamic>> get({required String endPoints}) async {
+    Response response = await dio.get('$routeBaseUrl$endPoints');
 
     return response.data;
   }

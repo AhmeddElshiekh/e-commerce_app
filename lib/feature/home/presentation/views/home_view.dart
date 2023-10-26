@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smile_shop/feature/home/presentation/views/widgets/list_view_category_home.dart';
+import 'package:smile_shop/core/utils/styles.dart';
+import 'package:smile_shop/feature/home/presentation/views/widgets/check_state_category_home.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,10 +13,11 @@ class HomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Category',style: TextStyle(
-              fontSize: 30,
-            ),),
-            ListViewCategoryHome()
+            Text('Category',style:Styles.textStyle40),
+            SizedBox(
+              height: 10,
+            ),
+            CheckStateCategoryHome()
           ],
 
         ),

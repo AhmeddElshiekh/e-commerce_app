@@ -10,6 +10,13 @@ abstract class Styles{
       fontWeight: FontWeight.bold,
       color: Colors.deepPurple
   );
+  static const textStyle40 = TextStyle(
+      fontSize: 40,
+      fontFamily:
+      Assets.fontsDancingScriptVariableFontWght,
+      fontWeight: FontWeight.bold,
+      color: Colors.deepPurple
+  );
   // static const textStyle20 = TextStyle(
   //   fontSize: 20,
   //   fontWeight: FontWeight.normal,

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smile_shop/core/bloc_observer/bloc_observer.dart';
-import 'package:smile_shop/core/repos/home_repo_implementation.dart';
 import 'package:smile_shop/core/utils/api_service.dart';
 import 'package:smile_shop/core/utils/cache_helper.dart';
-import 'package:smile_shop/feature/authentication/presentation/manger/auth_cubit/auth_cubit.dart';
-import 'package:smile_shop/feature/authentication/presentation/views/log_in_view.dart';
+import 'package:smile_shop/feature/authentication/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:smile_shop/feature/home_layout/presentation/manager/home_cubit/home_layout_cubit.dart';
-import 'package:smile_shop/feature/splash/presentation/views/splash_view.dart';
+import 'package:smile_shop/feature/home_layout/presentation/views/home_layout_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         themeMode: ThemeMode.light,
-        home: const LogInView(),
+        home: const HomeLayoutView(),
       ),
     );
   }

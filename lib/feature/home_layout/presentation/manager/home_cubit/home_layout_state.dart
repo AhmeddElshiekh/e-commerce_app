@@ -6,3 +6,7 @@ abstract class HomeLayoutState {}
 class HomeInitial extends HomeLayoutState {}
 
 class HomeChangeIndexBottomNav extends HomeLayoutState {}
+
+class HomeChangeIndexBottomNavTo1 extends HomeLayoutState {}
+
+class CategoryChangeIndexState extends HomeLayoutState {}

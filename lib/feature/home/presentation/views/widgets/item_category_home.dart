@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:smile_shop/generated/assets.dart';
+import 'package:smile_shop/core/models/category_model.dart';
 
 class ItemCategoryHome extends StatelessWidget {
-  const ItemCategoryHome({super.key});
-
+  const ItemCategoryHome({super.key, required this.model});
+final Data2 model;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
         CircleAvatar(
           radius: 70,
-          backgroundImage: AssetImage(Assets.imagesSmileShop),
+          backgroundImage: NetworkImage(model.image ?? ''),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Text('Man Clothes')
+         Text(model.name  ?? '')
       ],
     );
   }
