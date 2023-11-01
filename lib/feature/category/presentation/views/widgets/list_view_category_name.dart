@@ -13,28 +13,51 @@ class ListViewCategoryName extends StatelessWidget {
     return BlocBuilder<HomeLayoutCubit, HomeLayoutState>(
       builder: (context, state) {
         var cubit = BlocProvider.of<HomeLayoutCubit>(context);
-        return ListView.builder(
-          itemBuilder: (context, index) => Material(
-            color: Colors.transparent,
-            child: InkWell(
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => InkWell(
               onTap: () {
                 cubit.changeIndex(index: index);
               },
               child: Container(
-                height: 80,
                 color: cubit.index1 == index
                     ? Colors.transparent
                     : Colors.grey[200],
-                child: Center(
-                  child: Text(
-                    model[index].name ?? '',
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Container(
+                      height: 15,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(40)),
+                        color: cubit.index1 != index
+                            ? Colors.transparent
+                            : Colors.deepPurple,
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 80,
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Text(
+                          model[index].name ?? '',
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+            itemCount: model.length,
           ),
-          itemCount: model.length,
         );
       },
     );

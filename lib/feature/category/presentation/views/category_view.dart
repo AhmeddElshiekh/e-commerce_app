@@ -15,21 +15,26 @@ class CategoryView extends StatelessWidget {
         return Expanded(
           child: Padding(
             padding: const EdgeInsetsDirectional.only(top: 20),
-            child: Row(
-              children: [
-                if (state is HomeGetCategoryHomeSuccessfulState)
-                  SuccessCategoryName(model: state.model),
-                if(state is HomeGetCategoryHomeLoadingState)
-                  const LoadingCategoryName(),
-                if(state is HomeGetCategoryHomeErrorState)
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width *.4,
-                      child: Text(state.errMassage,style: const TextStyle(
-                        fontSize: 24
-                      ),)),
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  if (state is HomeGetCategoryHomeSuccessfulState)
+                    SuccessCategoryName(model: state.model),
+                  if (state is HomeGetCategoryHomeLoadingState)
+                    const LoadingCategoryName(),
+                  if (state is HomeGetCategoryHomeErrorState)
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .4,
+                      child: Text(
+                        state.errMassage,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ),
 
-                 const CategoryComponent()
-              ],
+                  const CategoryComponent()
+                ],
+              ),
             ),
           ),
         );
@@ -37,4 +42,3 @@ class CategoryView extends StatelessWidget {
     );
   }
 }
-

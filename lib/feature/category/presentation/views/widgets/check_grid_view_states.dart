@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smile_shop/core/utils/cached_network_image.dart';
 import 'package:smile_shop/feature/category/presentation/manager/category_cubit/category_cubit.dart';
+import 'package:smile_shop/feature/category/presentation/views/widgets/grid_view_item.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/loading_grid_view_category_components.dart';
 
-class GridViewCategoryComponents extends StatelessWidget {
-  const GridViewCategoryComponents({super.key});
+class CheckGradViewStates extends StatelessWidget {
+  const CheckGradViewStates({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,24 +14,25 @@ class GridViewCategoryComponents extends StatelessWidget {
         if (state is CategorySuccessfulState) {
           if (state.model.isNotEmpty) {
             return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: state.model.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 20.0,
-                ),
-                itemBuilder: (context, index) {
-                  return Card(
-                      clipBehavior: Clip.hardEdge,
-                      child:
-                          CachedImage(imageUrl: state.model[index].images![0]));
-                });
+              padding: const EdgeInsets.only(top: 20, bottom: 500),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+              ),
+              itemCount: state.model.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  GridViewItem(index: index, model: state.model[index]),
+            );
           } else {
             return Padding(
               padding: EdgeInsetsDirectional.symmetric(
-                  vertical: MediaQuery.of(context).size.height * .1,
-                  horizontal: 15),
+                vertical: MediaQuery.of(context).size.height * .1,
+                horizontal: 15,
+              ),
               child: const Text(
                 'Sorry, we do not have any products in this category',
                 style: TextStyle(fontSize: 18),

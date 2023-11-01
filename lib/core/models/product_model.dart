@@ -1,42 +1,47 @@
 class ProductModel {
+  num? sold;
   List<String>? images;
   // List<Subcategory>? subcategory;
-  // num? ratingsQuantity;
+  num? ratingsQuantity;
   // String? sId;
-  // String? title;
+  String? title;
   // String? slug;
   // String? description;
-  // num? quantity;
-  // num? price;
+  num? quantity;
+  num? price;
+  num? priceAfterDiscount;
   // String? imageCover;
   // Category? category;
   // Category? brand;
-  // num? ratingsAverage;
+  num? ratingsAverage;
   // String? createdAt;
   // String? updatedAt;
   // String? id;
 
   ProductModel(
       {
+        this.sold,
         this.images,
         // this.subcategory,
-        // this.ratingsQuantity,
+        this.ratingsQuantity,
         // this.sId,
-        // this.title,
+        this.title,
         // this.slug,
         // this.description,
         // this.quantity,
-        // this.price,
+        this.price,
+        this.priceAfterDiscount,
         // this.imageCover,
         // this.category,
         // this.brand,
-        // this.ratingsAverage,
+        this.ratingsAverage,
         // this.createdAt,
         // this.updatedAt,
         // this.id
       });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
+    sold = json['sold'];
     images = json['images'].cast<String>();
     // if (json['subcategory'] != null) {
     //   subcategory = <Subcategory>[];
@@ -44,19 +49,20 @@ class ProductModel {
     //     subcategory!.add(Subcategory.fromJson(v));
     //   });
     // }
-    // ratingsQuantity = json['ratingsQuantity'];
+    ratingsQuantity = json['ratingsQuantity'];
     // sId = json['_id'];
-    // title = json['title'];
+    title = json['title'];
     // slug = json['slug'];
     // description = json['description'];
-    // quantity = json['quantity'];
-    // price = json['price'];
+    quantity = json['quantity'];
+    price = json['price'];
+    priceAfterDiscount = json['priceAfterDiscount'];
     // imageCover = json['imageCover'];
     // // category = json['category'] != null
     // //     ? Category.fromJson(json['category'])
     // //     : null;
     // // brand = json['brand'] != null ? Category.fromJson(json['brand']) : null;
-    // ratingsAverage = json['ratingsAverage'];
+    ratingsAverage = json['ratingsAverage'];
     // createdAt = json['createdAt'];
     // updatedAt = json['updatedAt'];
     // id = json['id'];

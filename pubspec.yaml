@@ -37,6 +37,8 @@ dependencies:
   dartz: ^0.10.1
   cached_network_image: ^3.3.0
   shimmer: ^3.0.0
+  smooth_page_indicator: ^1.1.0
+
   flutter:
     sdk: flutter
 
