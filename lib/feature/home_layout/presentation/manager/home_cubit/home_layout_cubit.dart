@@ -39,17 +39,23 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
   }
 
 
-  List<String> categoryId = [
-    '6439d61c0049ad0b52b90051',
-    '6439d5b90049ad0b52b90048',
-    '6439d58a0049ad0b52b9003f',
-    '6439d41c67d9aa4ca97064d5',
-    '6439d40367d9aa4ca97064cc',
-    '6439d3e067d9aa4ca97064c3',
-    '6439d3c867d9aa4ca97064ba',
-    '6439d30b67d9aa4ca97064b1',
-    '6439d2f467d9aa4ca97064a8',
-    '6439d2d167d9aa4ca970649f',
+  List<num> id = [
+    44,
+    43,
+    42,
+    40,
+    46,
   ];
+
+  int value = 0;
+  void plus(){
+    value++;
+    emit(ProductDetailPlusState());
+  }
+
+  void minus(){
+    value > 0 ? value-- : 0;
+    emit(ProductDetailMinusState());
+  }
 
 }

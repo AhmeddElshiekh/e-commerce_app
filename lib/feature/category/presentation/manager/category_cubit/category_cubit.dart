@@ -10,16 +10,16 @@ part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit() : super(CategoryInitial());
 
-  getCategoryProduct({
-    required String categoryId
+  getCategoryProductId({
+    required num categoryId
 }) async {
     emit(CategoryLoadingState());
-    var result = await HomeRepo.fetchCategoryProducts(categoryId: categoryId);
+    var result = await HomeRepo.fetchCategoryProductsId(id: categoryId);
     result.fold((failure) {
       log('error when Get Category Home${failure.errMessage.toString()}');
       emit(CategoryErrorState(failure.errMessage, failure.errIcon));
-    }, (category) {
-      emit(CategorySuccessfulState(category));
+    }, (data2) {
+      emit(CategorySuccessfulState(data2));
     });
   }
 

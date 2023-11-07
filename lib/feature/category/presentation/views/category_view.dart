@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/category_component.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/loading_category_name.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/success_category_name.dart';
-import 'package:smile_shop/feature/home/presentation/manager/home_cubit.dart';
+import 'package:smile_shop/feature/home/presentation/manager/home_cubit/home_cubit.dart';
 
 class CategoryView extends StatelessWidget {
   const CategoryView({super.key});

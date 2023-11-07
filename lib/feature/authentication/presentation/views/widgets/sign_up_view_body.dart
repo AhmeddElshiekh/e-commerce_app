@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icon_broken/icon_broken.dart';
 import 'package:smile_shop/core/utils/styles.dart';
 import 'package:smile_shop/feature/authentication/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:smile_shop/feature/authentication/presentation/views/widgets/Auth_text_form_filed.dart';
@@ -44,7 +45,7 @@ class SingUpViewBody extends StatelessWidget {
                         controller: cubit.nameController,
                         inputType: TextInputType.name,
                         label: 'User name',
-                        prefixIcon: Icons.person,
+                        prefixIcon: IconBroken.Profile,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter your name';
@@ -60,7 +61,7 @@ class SingUpViewBody extends StatelessWidget {
                         controller: cubit.regEmailController,
                         inputType: TextInputType.emailAddress,
                         label: 'Email Address',
-                        prefixIcon: Icons.email,
+                        prefixIcon: Icons.alternate_email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter your email address';
@@ -77,7 +78,7 @@ class SingUpViewBody extends StatelessWidget {
                         controller: cubit.regPasswordController,
                         inputType: TextInputType.visiblePassword,
                         label: 'Password',
-                        prefixIcon: Icons.lock,
+                        prefixIcon: IconBroken.Password,
                         obscure: cubit.isHide,
                         suffixIcon: cubit.suffix,
                         onPressed: (){
@@ -99,7 +100,7 @@ class SingUpViewBody extends StatelessWidget {
                         controller: cubit.phoneController,
                         inputType: TextInputType.phone,
                         label: 'Phone',
-                        prefixIcon: Icons.phone,
+                        prefixIcon: IconBroken.Call,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter your phone';

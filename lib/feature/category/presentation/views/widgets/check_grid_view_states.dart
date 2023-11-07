@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:smile_shop/feature/category/presentation/manager/category_cubit/category_cubit.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/grid_view_item.dart';
 import 'package:smile_shop/feature/category/presentation/views/widgets/loading_grid_view_category_components.dart';
@@ -13,19 +14,31 @@ class CheckGradViewStates extends StatelessWidget {
       builder: (context, state) {
         if (state is CategorySuccessfulState) {
           if (state.model.isNotEmpty) {
-            return GridView.builder(
-              padding: const EdgeInsets.only(top: 20, bottom: 500),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1 / 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
+            return AnimationLimiter(
+              child: GridView.builder(
+                padding: const EdgeInsets.only(top: 20, bottom: 500),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 1.8,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: state.model.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    AnimationConfiguration.staggeredGrid(
+                        position: index,
+                        columnCount: 2,
+                        child: ScaleAnimation(
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          scale: .5,
+                          child: FadeInAnimation(
+                            child: GridViewItem(
+                                index: index, model: state.model[index]),
+                          ),
+                        )),
               ),
-              itemCount: state.model.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  GridViewItem(index: index, model: state.model[index]),
             );
           } else {
             return Padding(

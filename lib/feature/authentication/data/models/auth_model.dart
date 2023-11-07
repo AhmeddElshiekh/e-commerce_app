@@ -1,11 +1,11 @@
 class AuthModel {
   bool? status;
-  late final String massage;
+  String? massage;
   UserData? data;
 
-  AuthModel({this.data, this.status, required this.massage});
+  AuthModel({this.data, this.status, this.massage});
 
-  AuthModel.fromJson(Map<String, dynamic> json) {
+  AuthModel.fromJson(json) {
     status = json['status'];
     massage = json['message'];
     data = json['data'] != null ? UserData.fromJson(json['data']) : null;
@@ -22,17 +22,18 @@ class UserData {
   String? image;
   String? token;
 
-  UserData(
-      {this.phone,
-        this.name,
-        this.email,
-        this.image,
-        this.id,
-        this.credit,
-        this.points,
-        this.token});
+  UserData({
+    this.phone,
+    this.name,
+    this.email,
+    this.image,
+    this.id,
+    this.credit,
+    this.points,
+    this.token,
+  });
 
-  UserData.fromJson(Map<String, dynamic> json) {
+  UserData.fromJson(json) {
     id = json['id'];
     points = json['points'];
     credit = json['credit'];

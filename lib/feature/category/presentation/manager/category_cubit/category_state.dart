@@ -6,7 +6,7 @@ abstract class CategoryState {}
 class CategoryInitial extends CategoryState {}
 
 class CategorySuccessfulState extends CategoryState {
-  final List<ProductModel> model;
+  final List<DataProduct2> model;
 
   CategorySuccessfulState(this.model);
 
@@ -18,3 +18,6 @@ class CategoryErrorState extends CategoryState {
   CategoryErrorState(this.errMassage, this.errIcon);
 }
 class CategoryLoadingState extends CategoryState {}
+
+
+

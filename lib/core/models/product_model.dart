@@ -1,108 +1,94 @@
 class ProductModel {
-  num? sold;
-  List<String>? images;
-  // List<Subcategory>? subcategory;
-  num? ratingsQuantity;
-  // String? sId;
-  String? title;
-  // String? slug;
-  // String? description;
-  num? quantity;
-  num? price;
-  num? priceAfterDiscount;
-  // String? imageCover;
-  // Category? category;
-  // Category? brand;
-  num? ratingsAverage;
-  // String? createdAt;
-  // String? updatedAt;
-  // String? id;
+  bool? status;
+  Data? data;
 
-  ProductModel(
-      {
-        this.sold,
-        this.images,
-        // this.subcategory,
-        this.ratingsQuantity,
-        // this.sId,
-        this.title,
-        // this.slug,
-        // this.description,
-        // this.quantity,
-        this.price,
-        this.priceAfterDiscount,
-        // this.imageCover,
-        // this.category,
-        // this.brand,
-        this.ratingsAverage,
-        // this.createdAt,
-        // this.updatedAt,
-        // this.id
-      });
+  ProductModel({this.status, this.data});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    sold = json['sold'];
-    images = json['images'].cast<String>();
-    // if (json['subcategory'] != null) {
-    //   subcategory = <Subcategory>[];
-    //   json['subcategory'].forEach((v) {
-    //     subcategory!.add(Subcategory.fromJson(v));
-    //   });
-    // }
-    ratingsQuantity = json['ratingsQuantity'];
-    // sId = json['_id'];
-    title = json['title'];
-    // slug = json['slug'];
-    // description = json['description'];
-    quantity = json['quantity'];
-    price = json['price'];
-    priceAfterDiscount = json['priceAfterDiscount'];
-    // imageCover = json['imageCover'];
-    // // category = json['category'] != null
-    // //     ? Category.fromJson(json['category'])
-    // //     : null;
-    // // brand = json['brand'] != null ? Category.fromJson(json['brand']) : null;
-    ratingsAverage = json['ratingsAverage'];
-    // createdAt = json['createdAt'];
-    // updatedAt = json['updatedAt'];
-    // id = json['id'];
+    status = json['status'];
+
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
-
-
 }
-//
-// class Subcategory {
-//   String? sId;
-//   String? name;
-//   String? slug;
-//   String? category;
-//
-//   Subcategory({this.sId, this.name, this.slug, this.category});
-//
-//   Subcategory.fromJson(Map<String, dynamic> json) {
-//     sId = json['_id'];
-//     name = json['name'];
-//     slug = json['slug'];
-//     category = json['category'];
-//   }
-//
-//
-// }
-//
-// class Category {
-//   String? sId;
-//   String? name;
-//   String? slug;
-//   String? image;
-//
-//   Category({this.sId, this.name, this.slug, this.image});
-//
-//   Category.fromJson(Map<String, dynamic> json) {
-//     sId = json['_id'];
-//     name = json['name'];
-//     slug = json['slug'];
-//     image = json['image'];
-//   }
-//
-//
-// }
+
+class Data {
+  num? currentPage;
+  List<DataProduct2>? data;
+  String? firstPageUrl;
+  num? from;
+  num? lastPage;
+  String? lastPageUrl;
+  String? path;
+  num? perPage;
+  num? to;
+  num? total;
+
+  Data(
+      {this.currentPage,
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.path,
+      this.perPage,
+      this.to,
+      this.total});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    currentPage = json['current_page'];
+    if (json['data'] != null) {
+      data = <DataProduct2>[];
+      json['data'].forEach((v) {
+        data!.add(DataProduct2.fromJson(v));
+      });
+    }
+    firstPageUrl = json['first_page_url'];
+    from = json['from'];
+    lastPage = json['last_page'];
+    lastPageUrl = json['last_page_url'];
+    path = json['path'];
+    perPage = json['per_page'];
+    to = json['to'];
+    total = json['total'];
+  }
+}
+
+class DataProduct2 {
+  num? id;
+  num? price;
+  num? oldPrice;
+  num? discount;
+  String? image;
+  String? name;
+  String? description;
+  List<String>? images;
+  bool? inFavorites;
+  bool? inCart;
+
+  DataProduct2({
+    this.id,
+    this.price,
+    this.oldPrice,
+    this.discount,
+    this.image,
+    this.name,
+    this.description,
+    this.images,
+    this.inFavorites,
+    this.inCart,
+  });
+
+  DataProduct2.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    price = json['price'];
+    oldPrice = json['old_price'];
+    discount = json['discount'];
+    image = json['image'];
+    name = json['name'];
+    description = json['description'];
+    images = json['images'].cast<String>();
+    inFavorites = json['in_favorites'];
+    inCart = json['in_cart'];
+  }
+}

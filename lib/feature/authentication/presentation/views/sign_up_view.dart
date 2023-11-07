@@ -22,10 +22,10 @@ class SignUpView extends StatelessWidget {
             );
 
             snackBar(context,
-                massage: state.authModel.massage, color: Colors.green);
+                massage: state.authModel.massage!, color: Colors.green);
           } else {
             snackBar(context,
-                massage: state.authModel.massage, color: Colors.red);
+                massage: state.authModel.massage!, color: Colors.red);
           }
         }
 

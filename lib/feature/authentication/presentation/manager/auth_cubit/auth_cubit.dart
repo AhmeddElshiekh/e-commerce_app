@@ -19,17 +19,19 @@ class AuthCubit extends Cubit<AuthState> {
   var logPasswordController = TextEditingController();
   var logEmailController = TextEditingController();
 
-
-   register() async {
+  register() async {
     emit(ShopRegisterLoadingState());
-    var result = await HomeRepo.postRegister(email: regEmailController.text, password: regPasswordController.text, name: nameController.text, phone: phoneController.text);
+    var result = await HomeRepo.postRegister(
+      email: regEmailController.text,
+      password: regPasswordController.text,
+      name: nameController.text,
+      phone: phoneController.text,
+    );
 
     result.fold((failure) {
       log(failure.errMessage.toString());
-      emit(ShopRegisterErrorState(failure.errMessage,failure.errIcon));
-
+      emit(ShopRegisterErrorState(failure.errMessage, failure.errIcon));
     }, (right) {
-
       emit(ShopRegisterSuccessfulState(HomeRepo.authModel));
     });
   }
@@ -37,16 +39,16 @@ class AuthCubit extends Cubit<AuthState> {
   void login() async {
     emit(ShopLoginLoadingState());
 
-    var result = await HomeRepo.postLogin(email: logEmailController.text, password: logPasswordController.text,);
+    var result = await HomeRepo.postLogin(
+      email: logEmailController.text,
+      password: logPasswordController.text,
+    );
     result.fold((failure) {
       log(failure.errMessage.toString());
-      emit(ShopLoginErrorState(failure.errMessage,failure.errIcon));
-
+      emit(ShopLoginErrorState(failure.errMessage, failure.errIcon));
     }, (right) {
-
       emit(ShopLoginSuccessfulState(HomeRepo.authModel));
     });
-
   }
 
   bool isHide = true;

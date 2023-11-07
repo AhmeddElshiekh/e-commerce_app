@@ -36,11 +36,12 @@ class CategoryModel {
 class Data2 {
   String? name;
   String? image;
-
-  Data2({ this.name, this.image});
+  num? id;
+  Data2({ this.name, this.image,this.id});
 
   Data2.fromJson( json) {
     name = json['name'];
     image = json['image'];
+    id = json['id'];
   }
 }

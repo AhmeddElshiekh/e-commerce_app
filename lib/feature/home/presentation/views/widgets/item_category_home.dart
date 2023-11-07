@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smile_shop/core/models/category_model.dart';
 
@@ -10,7 +11,7 @@ final Data2 model;
       children: [
         CircleAvatar(
           radius: 70,
-          backgroundImage: NetworkImage(model.image ?? ''),
+          backgroundImage: CachedNetworkImageProvider(model.image ?? ''),
         ),
         const SizedBox(
           height: 10,

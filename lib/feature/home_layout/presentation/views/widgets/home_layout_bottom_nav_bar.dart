@@ -34,7 +34,7 @@ class HomeLayoutBottomNavBar extends StatelessWidget {
 
               ),
               BottomNavigationBarItem(
-                icon: Icon(IconBroken.User),
+                icon: Icon(IconBroken.Profile),
                   label: 'User'
 
               ),

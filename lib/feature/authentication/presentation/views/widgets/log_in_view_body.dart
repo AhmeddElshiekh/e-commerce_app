@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:icon_broken/icon_broken.dart';
 import 'package:smile_shop/core/utils/styles.dart';
 import 'package:smile_shop/feature/authentication/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:smile_shop/feature/authentication/presentation/views/sign_up_view.dart';
@@ -45,7 +46,7 @@ class LogInViewBody extends StatelessWidget {
                     AuthTextFormFiled(controller: cubit.logEmailController,
                         inputType: TextInputType.emailAddress,
                         label: 'Email Address',
-                        prefixIcon: Icons.email,
+                        prefixIcon: Icons.alternate_email,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter your email address';
@@ -61,7 +62,7 @@ class LogInViewBody extends StatelessWidget {
                         inputType: TextInputType.visiblePassword,
                         label: 'Password',
                         obscure: cubit.isHide,
-                        prefixIcon: Icons.lock,
+                        prefixIcon: IconBroken.Password,
                         suffixIcon: cubit.suffix,
                         onPressed: (){
                           cubit.showPassword();

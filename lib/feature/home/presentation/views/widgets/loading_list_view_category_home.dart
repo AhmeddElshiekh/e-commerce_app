@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:smile_shop/core/utils/constant.dart';
 
 class LoadingListViewCategoryHome extends StatelessWidget {
   const LoadingListViewCategoryHome({super.key});
@@ -7,8 +8,8 @@ class LoadingListViewCategoryHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[500]!,
-      highlightColor: Colors.grey[100]!,
+      baseColor: baseColor,
+      highlightColor: highlightColor,
       child: SizedBox(
         height: 200,
         child: ListView.separated(

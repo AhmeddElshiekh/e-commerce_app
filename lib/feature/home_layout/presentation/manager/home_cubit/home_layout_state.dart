@@ -10,3 +10,6 @@ class HomeChangeIndexBottomNav extends HomeLayoutState {}
 class HomeChangeIndexBottomNavTo1 extends HomeLayoutState {}
 
 class CategoryChangeIndexState extends HomeLayoutState {}
+
+class ProductDetailPlusState extends HomeLayoutState {}
+class ProductDetailMinusState extends HomeLayoutState {}
