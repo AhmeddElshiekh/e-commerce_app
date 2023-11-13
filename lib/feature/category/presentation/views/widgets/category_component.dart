@@ -13,54 +13,56 @@ class CategoryComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     var homeLayoutCubit = BlocProvider.of<HomeLayoutCubit>(context);
     return BlocProvider(
-        create: (context) => CategoryCubit()
-          ..getCategoryProductId(
-              categoryId: homeLayoutCubit.id[homeLayoutCubit.index1]),
-        child: BlocConsumer<HomeLayoutCubit, HomeLayoutState>(
-          listener: (context, state) {
-            if (state is CategoryChangeIndexState) {
-              BlocProvider.of<CategoryCubit>(context).getCategoryProductId(
-                  categoryId:
-                      homeLayoutCubit.id[homeLayoutCubit.index1]);
-            }
-          },
-          builder: (context, state) {
-            var cubit = BlocProvider.of<HomeLayoutCubit>(context);
-            return BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20,),
-                        if (state is HomeGetCategoryHomeSuccessfulState)
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height *.35,
-                            width: double.infinity,
-                            child: Card(
-                              clipBehavior: Clip.hardEdge,
-                              child: CachedImage(
+      create: (context) => CategoryCubit()
+        ..getCategoryProductId(
+            categoryId: homeLayoutCubit.id[homeLayoutCubit.index1]),
+      child: BlocConsumer<HomeLayoutCubit, HomeLayoutState>(
+        listener: (context, state) {
+          if (state is CategoryChangeIndexState) {
+            BlocProvider.of<CategoryCubit>(context).getCategoryProductId(
+                categoryId: homeLayoutCubit.id[homeLayoutCubit.index1]);
+          }
+        },
+        builder: (context, state) {
+          var cubit = BlocProvider.of<HomeLayoutCubit>(context);
+          return BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (state is HomeGetCategoryHomeSuccessfulState)
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .35,
+                          width: double.infinity,
+                          child: Card(
+                            clipBehavior: Clip.hardEdge,
+                            child: CachedImage(
                                 boxFit: BoxFit.cover,
-                                  imageUrl: state.model[cubit.index1].image!),
-                            ),
+                                imageUrl: state.model[cubit.index1].image!),
                           ),
-                        if (state is HomeGetCategoryHomeErrorState)
-                          Text(
-                            state.errMassage,
-                            style: const TextStyle(
-                              fontSize: 18,
-                            ),
+                        ),
+                      if (state is HomeGetCategoryHomeErrorState)
+                        Text(
+                          state.errMassage,
+                          style: const TextStyle(
+                            fontSize: 18,
                           ),
-                        const CheckGradViewStates(),
-                      ],
-                    ),
+                        ),
+                      const CheckGradViewStates(),
+                    ],
                   ),
-                );
-              },
-            );
-          },
-        ));
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }

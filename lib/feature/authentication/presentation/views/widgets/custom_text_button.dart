@@ -3,16 +3,17 @@ import 'package:smile_shop/generated/assets.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton(
-      {super.key, required this.onPressed, required this.text});
+      {super.key, required this.onPressed, required this.text,  this.width});
 
   final void Function() onPressed;
   final String text;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 50,
-      width: double.infinity,
+      width: width ?? double.infinity,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(

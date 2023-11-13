@@ -15,3 +15,16 @@ class GetUserErrorState extends UserState {
 
   GetUserErrorState(this.errMassage, this.errIcon);
 }
+
+// class ShopLogOutLoadingState extends UserState {}
+// class ShopLogOutSuccessfulState extends UserState {
+//   final AuthModel authModel;
+//
+//   ShopLogOutSuccessfulState(this.authModel);
+// }
+// class ShopLogOutErrorState extends UserState {
+//   final String errMassage;
+//   final IconData errIcon;
+//
+//   ShopLogOutErrorState(this.errMassage, this.errIcon);
+// }

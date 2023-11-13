@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smile_shop/core/utils/snack_bar_back.dart';
 import 'package:smile_shop/feature/splash/presentation/views/widgets/splash_body_view.dart';
 
 class SplashView extends StatelessWidget {
@@ -6,8 +7,10 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashBodyView(),
+    return Scaffold(
+      body: doubleTap(
+          widget:const SplashBodyView(),
+      ),
     );
   }
 }

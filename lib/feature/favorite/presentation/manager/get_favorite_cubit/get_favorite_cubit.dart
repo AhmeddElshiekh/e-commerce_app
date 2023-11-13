@@ -1,29 +1,15 @@
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smile_shop/core/models/favorite_model.dart';
 import 'package:smile_shop/core/repos/home_repo.dart';
-part 'favorite_state.dart';
 
-class FavoriteCubit extends Cubit<FavoriteState> {
-  FavoriteCubit() : super(FavoriteInitial());
+part 'get_favorite_state.dart';
 
-  postFavorite({
-    required num productId
-}) async {
-    emit(PostFavoriteLoadingState());
-    var result = await HomeRepo.postFavorite(productId: productId);
-    result.fold((failure) {
-      log(failure.errMessage.toString());
-      emit(PostFavoriteErrorState(failure.errMessage,failure.errIcon));
-
-    }, (right) {
-      emit(PostFavoriteSuccessfulState(HomeRepo.favoriteModel));
-    });
-  }
-
-
+class GetFavoriteCubit extends Cubit<GetFavoriteState> {
+  GetFavoriteCubit() : super(GetFavoriteInitial());
   getAllFavorite()async {
     emit(GetAllFavoriteLoadingState());
     var result =await HomeRepo.fetchAllFavorites();

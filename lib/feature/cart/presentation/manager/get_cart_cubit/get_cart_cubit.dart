@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smile_shop/core/models/cart_model.dart';
 import 'package:smile_shop/core/repos/home_repo.dart';
-part 'cart_state.dart';
+part 'get_cart_state.dart';
 
-class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(CartInitial());
+class GetCartCubit extends Cubit<GetCartState> {
+  GetCartCubit() : super(CartInitial());
   getCart()async {
     emit(GetAllCartLoadingState());
     var result =await HomeRepo.fetchMyCart();

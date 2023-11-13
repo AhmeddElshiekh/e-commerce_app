@@ -24,10 +24,7 @@ class SingUpViewBody extends StatelessWidget {
                 key: regFormKey,
                 child: Column(
                   children: [
-                    const Text(
-                      'Smile Shop',
-                        style: Styles.textStyle30
-                    ),
+                    const Text('Smile Shop', style: Styles.textStyle30),
                     const SizedBox(
                       height: 50,
                     ),
@@ -42,7 +39,7 @@ class SingUpViewBody extends StatelessWidget {
                       height: 20,
                     ),
                     AuthTextFormFiled(
-                        controller: cubit.nameController,
+                        controller: cubit.regNameController,
                         inputType: TextInputType.name,
                         label: 'User name',
                         prefixIcon: IconBroken.Profile,
@@ -52,8 +49,7 @@ class SingUpViewBody extends StatelessWidget {
                           } else {
                             return null;
                           }
-                        }
-                    ),
+                        }),
                     const SizedBox(
                       height: 30,
                     ),
@@ -68,9 +64,7 @@ class SingUpViewBody extends StatelessWidget {
                           } else {
                             return null;
                           }
-                        }
-                    ),
-
+                        }),
                     const SizedBox(
                       height: 30,
                     ),
@@ -81,7 +75,7 @@ class SingUpViewBody extends StatelessWidget {
                         prefixIcon: IconBroken.Password,
                         obscure: cubit.isHide,
                         suffixIcon: cubit.suffix,
-                        onPressed: (){
+                        onPressed: () {
                           cubit.showPassword();
                         },
                         validator: (value) {
@@ -90,14 +84,12 @@ class SingUpViewBody extends StatelessWidget {
                           } else {
                             return null;
                           }
-                        }
-                    ),
-
+                        }),
                     const SizedBox(
                       height: 30,
                     ),
                     AuthTextFormFiled(
-                        controller: cubit.phoneController,
+                        controller: cubit.regPhoneController,
                         inputType: TextInputType.phone,
                         label: 'Phone',
                         prefixIcon: IconBroken.Call,
@@ -107,24 +99,22 @@ class SingUpViewBody extends StatelessWidget {
                           } else {
                             return null;
                           }
-                        }
-                    ),
+                        }),
                     const SizedBox(
                       height: 50,
                     ),
-
-                    if(state is ShopRegisterLoadingState)
+                    if (state is ShopRegisterLoadingState)
                       const Center(child: CircularProgressIndicator()),
-
-                    if(state is! ShopRegisterLoadingState)
+                    if (state is! ShopRegisterLoadingState)
                       CustomTextButton(
-                      onPressed: () {
-                        if (regFormKey.currentState!.validate()) {
-                          cubit.register();
-                        }
-                      },
-                      text: 'Sign Up',
-                    ),
+                        onPressed: () {
+                          if (regFormKey.currentState!.validate()) {
+                            cubit.register();
+
+                          }
+                        },
+                        text: 'Sign Up',
+                      ),
                   ],
                 ),
               ),

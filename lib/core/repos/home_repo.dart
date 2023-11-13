@@ -11,7 +11,11 @@ import 'package:smile_shop/feature/authentication/data/models/auth_model.dart';
 abstract class HomeRepo {
   static late AuthModel authModel;
   static late FavoriteModel favoriteModel;
+  static late CartModel cartModel;
   static late DataCart cart;
+  static Set<String> favoriteId = {};
+  static Set<String> cartId = {};
+
 
   static Future<Either<Failure, void>> postRegister({
     required String email,
@@ -62,6 +66,27 @@ abstract class HomeRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  static Future<Either<Failure, void>> postLogOut() async {
+    try {
+      await ApiService.post(
+        endPoints: 'logout',
+        data: {
+          "fcm_token": "SomeFcmToken"
+        },
+      ).then((value) {
+        authModel = AuthModel.fromJson(value.data);
+      });
+      return right(null);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+
 
   static Future<Either<Failure, List<Data2>>> fetchCategory() async {
     try {
@@ -116,6 +141,26 @@ abstract class HomeRepo {
     }
   }
 
+
+  static Future<Either<Failure, List<DataProduct2>>> search({required String textSearch}) async {
+    try {
+      var data = await ApiService.returnPost(
+        endPoints: 'products/search?text=$textSearch'
+      );
+      List<DataProduct2> data2 = [];
+      for (var item in data['data']['data']) {
+        data2.add(DataProduct2.fromJson(item));
+      }
+      return right(data2);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+
   static Future<Either<Failure, List<CartItems>>> fetchMyCart() async {
     try {
       var data = await ApiService.get(
@@ -124,6 +169,8 @@ abstract class HomeRepo {
       List<CartItems> cartItem = [];
       for (var item in data['data']['cart_items']) {
         cartItem.add(CartItems.fromJson(item));
+        cartId.add(item['product']['id'].toString());
+
       }
       cart = DataCart.fromJson(data['data']);
       return right(cartItem);
@@ -134,9 +181,29 @@ abstract class HomeRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+  static Future<Either<Failure, void>> postCart({
+    required String productId,
+  }) async {
+    try {
+      await ApiService.post(
+        endPoints: 'carts',
+        data: {
+          'product_id': productId,
+        },
+      ).then((value) {
+        cartModel = CartModel.fromJson(value.data);
+      });
+      return right(null);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 
   static Future<Either<Failure, void>> postFavorite({
-    required num productId,
+    required String productId,
   }) async {
     try {
       await ApiService.post(
@@ -156,8 +223,7 @@ abstract class HomeRepo {
     }
   }
 
-  static Future<Either<Failure, List<DataFavorite2>>>
-      fetchAllFavorites() async {
+  static Future<Either<Failure, List<DataFavorite2>>> fetchAllFavorites() async {
     try {
       var data = await ApiService.get(
         endPoints: 'favorites',
@@ -165,6 +231,7 @@ abstract class HomeRepo {
       List<DataFavorite2> dataFavorite2 = [];
       for (var item in data['data']['data']) {
         dataFavorite2.add(DataFavorite2.fromJson(item));
+        favoriteId.add(item['product']['id'].toString());
       }
       return right(dataFavorite2);
     } catch (e) {
@@ -181,6 +248,33 @@ abstract class HomeRepo {
         endPoints: 'profile',
       );
       authModel = AuthModel.fromJson(data);
+      return right(null);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  static Future<Either<Failure, void>> updateProfile({
+    String? email,
+    String? password,
+    String? name,
+    String? phone,
+  }) async {
+    try {
+      await ApiService.put(
+        endPoints: 'update-profile',
+        data: {
+          "email": email,
+          "password": password,
+          'name': name,
+          'phone': phone,
+        },
+      ).then((value) {
+        authModel = AuthModel.fromJson(value.data);
+      });
       return right(null);
     } catch (e) {
       if (e is DioException) {

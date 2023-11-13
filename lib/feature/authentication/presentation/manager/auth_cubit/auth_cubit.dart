@@ -12,8 +12,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit get(context) => BlocProvider.of(context);
 
-  var nameController = TextEditingController();
-  var phoneController = TextEditingController();
+  var regNameController = TextEditingController();
+  var regPhoneController = TextEditingController();
   var regPasswordController = TextEditingController();
   var regEmailController = TextEditingController();
   var logPasswordController = TextEditingController();
@@ -24,8 +24,8 @@ class AuthCubit extends Cubit<AuthState> {
     var result = await HomeRepo.postRegister(
       email: regEmailController.text,
       password: regPasswordController.text,
-      name: nameController.text,
-      phone: phoneController.text,
+      name: regNameController.text,
+      phone: regPhoneController.text,
     );
 
     result.fold((failure) {

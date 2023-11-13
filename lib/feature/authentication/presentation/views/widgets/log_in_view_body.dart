@@ -26,10 +26,7 @@ class LogInViewBody extends StatelessWidget {
                 key: logFormKey,
                 child: Column(
                   children: [
-                    const Text(
-                      'Smile Shop',
-                      style: Styles.textStyle30
-                    ),
+                    const Text('Smile Shop', style: Styles.textStyle30),
                     const SizedBox(
                       height: 50,
                     ),
@@ -43,7 +40,8 @@ class LogInViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    AuthTextFormFiled(controller: cubit.logEmailController,
+                    AuthTextFormFiled(
+                        controller: cubit.logEmailController,
                         inputType: TextInputType.emailAddress,
                         label: 'Email Address',
                         prefixIcon: Icons.alternate_email,
@@ -64,7 +62,7 @@ class LogInViewBody extends StatelessWidget {
                         obscure: cubit.isHide,
                         prefixIcon: IconBroken.Password,
                         suffixIcon: cubit.suffix,
-                        onPressed: (){
+                        onPressed: () {
                           cubit.showPassword();
                         },
                         validator: (value) {
@@ -73,25 +71,22 @@ class LogInViewBody extends StatelessWidget {
                           } else {
                             return null;
                           }
-                        }
-                    ),
+                        }),
                     const SizedBox(
                       height: 50,
                     ),
-                    if(state is ShopLoginLoadingState)
+                    if (state is ShopLoginLoadingState)
                       const Center(child: CircularProgressIndicator()),
-
-
-                    if(state is! ShopLoginLoadingState)
+                    if (state is! ShopLoginLoadingState)
                       CustomTextButton(
-                      onPressed: () {
-                        if (logFormKey.currentState!.validate()) {
-                          cubit.login();
-                        }
-                      },
-                      text: 'Login',
-                    ),
+                        onPressed: () {
+                          if (logFormKey.currentState!.validate()) {
+                            cubit.login();
 
+                          }
+                        },
+                        text: 'Login',
+                      ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -101,22 +96,24 @@ class LogInViewBody extends StatelessWidget {
                           'Don\'t have an account ? ',
                           style: TextStyle(fontSize: 18),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpView(),
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignUpView(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Create account',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontFamily:
+                                    Assets.fontsDancingScriptVariableFontWght,
+                                fontWeight: FontWeight.bold,
                               ),
-                            );
-                          },
-                          child: const Text(
-                            'Create account',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontFamily:
-                              Assets.fontsDancingScriptVariableFontWght,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

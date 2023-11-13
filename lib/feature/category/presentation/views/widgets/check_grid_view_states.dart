@@ -16,29 +16,30 @@ class CheckGradViewStates extends StatelessWidget {
           if (state.model.isNotEmpty) {
             return AnimationLimiter(
               child: GridView.builder(
-                padding: const EdgeInsets.only(top: 20, bottom: 500),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.8,
-                  mainAxisSpacing: 10,
-                ),
-                itemCount: state.model.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    AnimationConfiguration.staggeredGrid(
-                        position: index,
-                        columnCount: 2,
-                        child: ScaleAnimation(
-                          duration: const Duration(seconds: 1),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                          scale: .5,
-                          child: FadeInAnimation(
-                            child: GridViewItem(
-                                index: index, model: state.model[index]),
-                          ),
-                        )),
-              ),
+                  padding: const EdgeInsets.only(top: 20, bottom: 500),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1 / 1.8,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: state.model.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      columnCount: 2,
+                      child: ScaleAnimation(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        scale: .5,
+                        child: FadeInAnimation(
+                          child: GridViewItem(model: state.model[index]),
+                        ),
+                      ),
+                    );
+                  }),
             );
           } else {
             return Padding(

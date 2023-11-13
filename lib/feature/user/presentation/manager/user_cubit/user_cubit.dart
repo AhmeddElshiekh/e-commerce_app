@@ -24,4 +24,17 @@ class UserCubit extends Cubit<UserState> {
     });
   }
 
+  //
+  // logOut() async {
+  //   emit(ShopLogOutLoadingState());
+  //   var result = await HomeRepo.postLogOut();
+  //
+  //   result.fold((failure) {
+  //     log(failure.errMessage.toString());
+  //     emit(ShopLogOutErrorState(failure.errMessage, failure.errIcon));
+  //   }, (right) {
+  //     emit(ShopLogOutSuccessfulState(HomeRepo.authModel));
+  //   });
+  // }
+
 }

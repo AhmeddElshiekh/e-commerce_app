@@ -21,11 +21,11 @@ class CacheHelper {
     return await sharedPreferences.setDouble(key, value );
   }
 
-  static dynamic getSaveData({
+  static String? getSaveData({
     required String key,
   })
   {
-    return sharedPreferences.get(key);
+    return sharedPreferences.getString(key);
   }
   static Future<bool> removeData({
     required String key,

@@ -24,6 +24,10 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
     currentIndex = 1;
     emit(HomeChangeIndexBottomNavTo1());
   }
+  changeIndexNavBarTo2(){
+    currentIndex = 2;
+    emit(HomeChangeIndexBottomNavTo2());
+  }
 
   void changeIndexNavBar ({required int index}){
     currentIndex = index;

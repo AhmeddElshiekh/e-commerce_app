@@ -5,3 +5,5 @@ const Color mainColor = Colors.deepPurple;
 
  Color baseColor = Colors.grey[300]!;
  Color highlightColor = Colors.grey[500]!;
+
+ String token = '';

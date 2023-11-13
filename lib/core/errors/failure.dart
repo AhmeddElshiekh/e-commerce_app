@@ -33,7 +33,7 @@ class ServerFailure extends Failure {
 
         return ServerFailure(errMessage:'Unexpected Error, Please try again!');
       default:
-        return ServerFailure(errMessage:'Oops There was an Error, Please try again');
+        return ServerFailure(errMessage:'Oops There was an Error, Please try again1');
     }
   }
 
@@ -45,7 +45,7 @@ class ServerFailure extends Failure {
     } else if (statusCode == 500) {
       return ServerFailure(errMessage:'Internal Server error, Please try later');
     } else {
-      return ServerFailure(errMessage:'Oops There was an Error, Please try again');
+      return ServerFailure(errMessage:'Oops There was an Error, Please try again2');
     }
   }
 }
