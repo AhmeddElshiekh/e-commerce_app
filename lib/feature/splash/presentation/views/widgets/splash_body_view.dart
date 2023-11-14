@@ -111,7 +111,7 @@ class SplashBodyViewState extends State<SplashBodyView> {
                 children: [
                   Center(
                     child: _e
-                        ? Lottie.asset(Assets.imagesAnimation,)
+                        ? Lottie.asset(Assets.imagesAnimation)
                         : const SizedBox(),
                   ),
                   Center(
